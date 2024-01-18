@@ -22,7 +22,7 @@ def get_clients(db: Session, skip: int = 0, limit: int = 100):
 
 def create_client(db: Session, client: schemas.ClientCreate):
     hashed_password = get_password_hash(client.password)
-    db_client = models.Client(username=client.username, email=client.email, hashed_password= hashed_password)
+    db_client = models.Client(username=client.username, email=client.email, password= hashed_password)
     db.add(db_client)
     db.commit()
     db.refresh(db_client)
